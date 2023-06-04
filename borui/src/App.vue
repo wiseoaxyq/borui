@@ -43,18 +43,25 @@
           <li>
             <p>产品中心</p>
             <span>全自动点胶点漆机</span>
-            <span>全自动点钻机</span>
-            <span>全自动贴配机</span>
-            <span>食品裱花机</span>
+            <span>全自动视觉点钻贴片机</span>
+            <span>全自动食品裱花机</span>
           </li>
           <li>
             <p>行业方案</p>
-            <span>食品裱花</span>
-            <span>模具生产</span>
+            <span>食品行业</span>
+            <span>3C电子</span>
+            <span>五金行业</span>
+            <span>包装印刷</span>
+            <span>新能源行业</span>
           </li>
           <li>
             <p>客户服务</p>
-            <span>服务保障</span>
+            <span>客户培训</span>
+            <span>技术支持</span>
+            <span>常见问题</span>
+            <span>设备配件</span>
+            <span>保养知识</span>
+            <span>下载中心</span>
           </li>
           <li>
             <p>新闻资讯</p>
@@ -63,9 +70,10 @@
           </li>
           <li>
             <p>关于柏锐</p>
-            <span>公司环境</span>
             <span>企业介绍</span>
-            <span>企业文化</span>
+            <span>使命愿景</span>
+            <span>企业风采</span>
+            <span>荣誉资质</span>
           </li>
           <li class="appContact">
             <p>联系方式</p>

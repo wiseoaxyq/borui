@@ -15,12 +15,7 @@
                     <el-row :gutter="20">
                         <el-col :span="6" v-for="item in productList.slice(0,4)" :key="item.id">
                             <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
-                            <div class="tabItem">
-                                <div class="itemImg">
-                                    <img :src="item.invPic" alt="image">
-                                </div>
-                                <h2>{{item.invName}}</h2>
-                            </div>
+                            <productbox :pic="item.invPic" :title="item.invName"></productbox>
                             </router-link>
                         </el-col>
                     </el-row>
@@ -29,12 +24,7 @@
                     <el-row :gutter="20">
                         <el-col :span="6" v-for="item in productList.slice(0,4)" :key="item.id">
                             <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
-                            <div class="tabItem">
-                                <div class="itemImg">
-                                    <img :src="item.invPic" alt="image">
-                                </div>
-                                <h2>{{item.invName}}</h2>
-                            </div>
+                            <productbox :pic="item.invPic" :title="item.invName"></productbox>
                             </router-link>
                         </el-col>
                     </el-row>
@@ -43,12 +33,7 @@
                     <el-row :gutter="20">
                         <el-col :span="6" v-for="item in productList.slice(0,4)" :key="item.id">
                             <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
-                            <div class="tabItem">
-                                <div class="itemImg">
-                                    <img :src="item.invPic" alt="image">
-                                </div>
-                                <h2>{{item.invName}}</h2>
-                            </div>
+                            <productbox :pic="item.invPic" :title="item.invName"></productbox>
                             </router-link>
                         </el-col>
                     </el-row>
@@ -74,12 +59,7 @@
                         <el-col :span="10">
                             <el-row :gutter="20">
                                 <el-col :span="12" v-for="(item,index) in caseProduct.slice(0,4)" :key="index" >
-                                    <div class="tabItem">
-                                        <h2>{{item.title}}</h2>
-                                        <div class="itemImg">
-                                            <img :src="item.pic" alt="image">
-                                        </div>
-                                    </div>
+                                <productbox :pic="item.pic" :title="item.title"></productbox>
                                 </el-col>
                             </el-row>
                         </el-col>
@@ -99,12 +79,7 @@
                         <el-col :span="10">
                             <el-row :gutter="20">
                                 <el-col :span="12" v-for="(item,index) in caseProduct.slice(0,4)" :key="index" >
-                                    <div class="tabItem">
-                                        <h2>{{item.title}}</h2>
-                                        <div class="itemImg">
-                                            <img :src="item.pic" alt="image">
-                                        </div>
-                                    </div>
+                                    <productbox :pic="item.pic" :title="item.title"></productbox>
                                 </el-col>
                             </el-row>
                         </el-col>
@@ -124,12 +99,7 @@
                         <el-col :span="10">
                             <el-row :gutter="20">
                                 <el-col :span="12" v-for="(item,index) in caseProduct.slice(0,4)" :key="index" >
-                                    <div class="tabItem">
-                                        <h2>{{item.title}}</h2>
-                                        <div class="itemImg">
-                                            <img :src="item.pic" alt="image">
-                                        </div>
-                                    </div>
+                                    <productbox :pic="item.pic" :title="item.title"></productbox>
                                 </el-col>
                             </el-row>
                         </el-col>
@@ -149,12 +119,7 @@
                         <el-col :span="10">
                             <el-row :gutter="20">
                                 <el-col :span="12" v-for="(item,index) in caseProduct.slice(0,4)" :key="index" >
-                                    <div class="tabItem">
-                                        <h2>{{item.title}}</h2>
-                                        <div class="itemImg">
-                                            <img :src="item.pic" alt="image">
-                                        </div>
-                                    </div>
+                                    <productbox :pic="item.pic" :title="item.title"></productbox>
                                 </el-col>
                             </el-row>
                         </el-col>
@@ -174,12 +139,7 @@
                         <el-col :span="10">
                             <el-row :gutter="20">
                                 <el-col :span="12" v-for="(item,index) in caseProduct.slice(0,4)" :key="index" >
-                                    <div class="tabItem">
-                                        <h2>{{item.title}}</h2>
-                                        <div class="itemImg">
-                                            <img :src="item.pic" alt="image">
-                                        </div>
-                                    </div>
+                                    <productbox :pic="item.pic" :title="item.title"></productbox>
                                 </el-col>
                             </el-row>
                         </el-col>
@@ -332,6 +292,7 @@
 
 <script>
 import axios from 'axios'
+import productbox from '../components/productBox.vue'
 
 export default{
     name:'home',
@@ -460,6 +421,9 @@ export default{
     mounted(){
         this.homeDataFilter(this.tabName)
         this.homeNewsDataGet()
+    },
+    components:{
+        productbox
     }
 }
 </script>
@@ -508,34 +472,6 @@ a{
 }
 .el-tabs__item{
     font-size: 20px;
-}
-.tabItem{
-    margin: 10px;
-    /* padding-bottom: 10px; */
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-}
-.itemImg{
-    overflow: hidden;
-    background-image: url(../assets/img/product_bg.jpg);
-    background-size: 100% 100%;
-}
-.itemImg img{
-    width: 100%;
-    transition: all 0.5s ease-in 0s;
-}
-.itemImg img:hover{
-    transform: scale(110%);
-    transition: all 0.5s ease-in;
-}
-.tabItem h2{
-    font-size: 1em;
-    padding: 10px 0px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: black;
 }
 
 /* 行业方案 */

@@ -29,3 +29,8 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 // 应用路由器
 app.use(router)
 app.mount('#app')
+
+// 路由跳转后回到顶部
+router.afterEach((to,from,next) => {
+    window.scrollTo(0,0);
+})

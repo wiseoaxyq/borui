@@ -33,12 +33,7 @@
                 <el-row :gutter="0">
                     <el-col :span="8" v-for="item in productList" :key="item.id">
                         <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
-                        <div class="tabItem">
-                            <div class="itemImg">
-                                <img :src="item.invPic" alt="image">
-                            </div>
-                            <h2>{{ item.invName }}</h2>
-                        </div>
+                            <productbox :pic="item.invPic" :title="item.invName"></productbox>
                         </router-link>
                     </el-col>
                 </el-row>
@@ -49,12 +44,7 @@
                 <el-row :gutter="0">    
                     <el-col :span="8" v-for="item in productList2" :key="item.id">
                         <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
-                        <div class="tabItem">
-                            <div class="itemImg">
-                                <img :src="item.invPic" alt="image">
-                            </div>
-                            <h2>{{ item.invName }}</h2>
-                        </div>
+                            <productbox :pic="item.invPic" :title="item.invName"></productbox>
                         </router-link>
                     </el-col>
                 </el-row>
@@ -65,12 +55,7 @@
                 <el-row :gutter="0">
                     <el-col :span="8" v-for="item in productList2" :key="item.id">
                         <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
-                        <div class="tabItem">
-                            <div class="itemImg">
-                                <img :src="item.invPic" alt="image">
-                            </div>
-                            <h2>{{ item.invName }}</h2>
-                        </div>
+                            <productbox :pic="item.invPic" :title="item.invName"></productbox>
                         </router-link>
                     </el-col>
                 </el-row>
@@ -81,12 +66,7 @@
                 <el-row :gutter="0">
                     <el-col :span="8" v-for="item in productList2" :key="item.id">
                         <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
-                        <div class="tabItem">
-                            <div class="itemImg">
-                                <img :src="item.invPic" alt="image">
-                            </div>
-                            <h2>{{ item.invName }}</h2>
-                        </div>
+                            <productbox :pic="item.invPic" :title="item.invName"></productbox>
                         </router-link>
                     </el-col>
                 </el-row>
@@ -118,6 +98,7 @@
 <script>
 import axios from 'axios';
 import banner from '../components/banner.vue'
+import productbox from '../components/productBox.vue'
 
 export default {
     name: 'product',
@@ -210,7 +191,8 @@ export default {
         this.dataHot()
     },
     components:{
-        banner
+        banner,
+        productbox
     }
 }
 </script>
