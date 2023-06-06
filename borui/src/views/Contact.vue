@@ -11,7 +11,7 @@
                 <tr><td class="conTitles">地址：</td><td>东莞市高埗镇振兴东二横路兆方资本工业园G栋1楼</td></tr>
             </el-col>
             <el-col :span="6" class="contactTable">
-                <el-form label-position="top" class="contactForm" :rules="rules">
+                <el-form label-position="top" class="contactForm">
                     <h1>留言板</h1>
                     <el-form-item label="姓名：">
                         <el-input v-model="formInfo.name" placeholder="姓名"/>
@@ -19,7 +19,7 @@
                     <el-form-item label="电话：">
                         <el-input v-model="formInfo.tel" placeholder="电话"/>
                     </el-form-item>
-                    <el-form-item label="邮箱：" prop="email">
+                    <el-form-item label="邮箱：">
                         <el-input v-model="formInfo.email" placeholder="邮箱"/>
                     </el-form-item>
                     <el-form-item label="地址：">
@@ -52,6 +52,7 @@ export default{
                 add:'',
                 mes:''
             },
+            // 正则验证（未启用）
             rules:{
                 email:[{
                     type: 'email',

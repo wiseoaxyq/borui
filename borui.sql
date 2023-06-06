@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80033
  Source Host           : localhost:3306
- Source Schema         : mysql
+ Source Schema         : borui
 
  Target Server Type    : MySQL
  Target Server Version : 80033
  File Encoding         : 65001
 
- Date: 04/06/2023 00:15:00
+ Date: 07/06/2023 01:52:14
 */
 
 SET NAMES utf8mb4;
@@ -47,7 +47,7 @@ CREATE TABLE `borui_message_board`  (
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '地址',
   `message` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '信息',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of borui_message_board
@@ -56,6 +56,7 @@ INSERT INTO `borui_message_board` VALUES (1, 'joy', '110', 'joy@mail.com', '111'
 INSERT INTO `borui_message_board` VALUES (2, '1', '1', '1', '11', '11');
 INSERT INTO `borui_message_board` VALUES (3, 'Sakura', '120', 'sakura@mail.com', 'China', 'No2. test message');
 INSERT INTO `borui_message_board` VALUES (4, '', '', 'dfdf', '', '');
+INSERT INTO `borui_message_board` VALUES (5, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for borui_news
@@ -145,18 +146,34 @@ CREATE TABLE `borui_productlist`  (
 -- ----------------------------
 -- Records of borui_productlist
 -- ----------------------------
-INSERT INTO `borui_productlist` VALUES (1, '1040000001', '视觉点胶机', '全自动_CCD', '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '101', '102', NULL, 1, '[\"3c\", \"hardware\", \"solutions\", \"newEnergy\"]');
-INSERT INTO `borui_productlist` VALUES (2, '1040000002', '滴胶机器', '环氧水晶_AB_双液', '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '101', '103', NULL, 1, '[\"3c\", \"hardware\", \"solutions\", \"newEnergy\"]');
-INSERT INTO `borui_productlist` VALUES (3, '1040000003', '全自动视觉点胶机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '101', '104', NULL, 1, '[\"3c\", \"hardware\", \"solutions\", \"newEnergy\"]');
-INSERT INTO `borui_productlist` VALUES (4, '1040000004', '视觉点胶机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '101', '105', NULL, 1, '[\"3c\", \"hardware\", \"solutions\", \"newEnergy\"]');
-INSERT INTO `borui_productlist` VALUES (5, '1040000005', '点钻机器人', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '201', '202', NULL, 1, '[\"3c\", \"hardware\", \"solutions\", \"newEnergy\"]');
-INSERT INTO `borui_productlist` VALUES (6, '1040000006', '五金饰品镶嵌机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '201', '203', NULL, 1, '[\"3c\", \"hardware\", \"solutions\", \"newEnergy\"]');
-INSERT INTO `borui_productlist` VALUES (7, '1040000007', '贴珠机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '201', '202', NULL, 1, '[\"3c\", \"hardware\", \"solutions\", \"newEnergy\"]');
-INSERT INTO `borui_productlist` VALUES (8, '1040000008', '食品裱花机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '301', '302', NULL, 1, '[\"food\"]');
-INSERT INTO `borui_productlist` VALUES (9, '1040000009', '饼干裱花机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '301', '303', NULL, 1, '[\"food\"]');
-INSERT INTO `borui_productlist` VALUES (10, '1040000010', '蛋糕裱花机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '301', '304', NULL, 1, '[\"food\"]');
-INSERT INTO `borui_productlist` VALUES (11, '1040000011', '巧克力裱花机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '301', '305', NULL, 1, '[\"food\"]');
-INSERT INTO `borui_productlist` VALUES (12, '1040000012', '自动点胶机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '101', '106', NULL, 1, '[\"3c\", \"hardware\", \"solutions\", \"newEnergy\"]');
-INSERT INTO `borui_productlist` VALUES (14, '1040000013', '自动点胶机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product.png', '101', '102', NULL, 1, '[\"3c\", \"hardware\", \"solutions\", \"newEnergy\"]');
+INSERT INTO `borui_productlist` VALUES (1, '1040000001', '视觉点胶机', '全自动_CCD', '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product/1011.png', '101', '102', NULL, 1, '[\"3c\", \"hardware\", \"newEnergy\"]');
+INSERT INTO `borui_productlist` VALUES (2, '1040000002', '滴胶机器', '环氧水晶_AB_双液', '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product/1012.png', '101', '103', NULL, 1, '[\"3c\", \"solutions\", \"newEnergy\"]');
+INSERT INTO `borui_productlist` VALUES (3, '1040000003', '全自动视觉点胶机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product/1013.png', '101', '104', NULL, 1, '[\"hardware\", \"solutions\", \"newEnergy\"]');
+INSERT INTO `borui_productlist` VALUES (4, '1040000004', '视觉点胶机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product/1014.png', '101', '105', NULL, 1, '[\"3c\", \"hardware\", \"solutions\", \"newEnergy\"]');
+INSERT INTO `borui_productlist` VALUES (5, '1040000005', '点钻机器人', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product/2011.png', '201', '202', NULL, 1, '[\"3c\", \"hardware\", \"newEnergy\"]');
+INSERT INTO `borui_productlist` VALUES (6, '1040000006', '五金饰品镶嵌机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product/2012.png', '201', '203', NULL, 1, '[\"hardware\", \"solutions\"]');
+INSERT INTO `borui_productlist` VALUES (8, '1040000008', '不锈钢双工裱花机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product/3011.png', '301', '302', NULL, 1, '[\"food\"]');
+INSERT INTO `borui_productlist` VALUES (9, '1040000009', '单工位裱花机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product/3012.png', '301', '303', NULL, 1, '[\"food\"]');
+INSERT INTO `borui_productlist` VALUES (10, '1040000010', '流水线', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product/3013.png', '301', '304', NULL, 1, '[\"food\"]');
+INSERT INTO `borui_productlist` VALUES (11, '1040000011', '碳钢双工位裱花机', NULL, '{\"pic\": \"./src/assets/img/product.png\", \"info\": \"柏锐机器，产品介绍...\"}', './src/assets/img/product/3014.png', '301', '305', NULL, 1, '[\"food\"]');
+
+-- ----------------------------
+-- Table structure for borui_user
+-- ----------------------------
+DROP TABLE IF EXISTS `borui_user`;
+CREATE TABLE `borui_user`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '名称',
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '角色',
+  `note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of borui_user
+-- ----------------------------
+INSERT INTO `borui_user` VALUES (1, '管理员', 'admin', 'password', 'sa', NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

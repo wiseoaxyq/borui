@@ -38,6 +38,7 @@ export default {
 }
 .itemImg img{
     width: 100%;
+    height: auto;
     transition: all 0.5s ease-in 0s;
 }
 .itemImg img:hover{

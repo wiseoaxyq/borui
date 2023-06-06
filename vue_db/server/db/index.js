@@ -2,10 +2,11 @@
 let mysql = require('mysql')
 
 let db = mysql.createPool({
+    connectionLimit: 10,
     host: '127.0.0.1',
     user: 'root',
     password: '123456',
-    database: 'mysql'
+    database: 'borui'
 })
 
 module.exports = db

@@ -20,4 +20,5 @@ router.get('/news/getnewid',news.getNewId)
 
 // 留言板
 router.get('/message/postmessage',messageBorder.postMessageBoard)
+
 module.exports = router

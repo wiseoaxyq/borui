@@ -34,6 +34,7 @@
         overflow: hidden;
         background-color: #fff;
         margin-bottom: 100px;
+        margin-top: 70px;
     }
   
     .mm {

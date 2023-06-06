@@ -12,7 +12,7 @@
             <div class="xhx"></div>
             <el-tabs v-model="tabName" @tab-change="homeDataFilter">
                 <el-tab-pane label="全自动点胶点漆机" name="101">
-                    <el-row :gutter="20">
+                    <el-row :gutter="0">
                         <el-col :span="6" v-for="item in productList.slice(0,4)" :key="item.id">
                             <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <productbox :pic="item.invPic" :title="item.invName"></productbox>
@@ -21,7 +21,7 @@
                     </el-row>
                 </el-tab-pane>
                 <el-tab-pane label="全自动视觉点钻贴片机" name="201">
-                    <el-row :gutter="20">
+                    <el-row :gutter="0">
                         <el-col :span="6" v-for="item in productList.slice(0,4)" :key="item.id">
                             <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <productbox :pic="item.invPic" :title="item.invName"></productbox>
@@ -30,7 +30,7 @@
                     </el-row>
                 </el-tab-pane>
                 <el-tab-pane label="全自动食品裱花机" name="301">
-                    <el-row :gutter="20">
+                    <el-row :gutter="0">
                         <el-col :span="6" v-for="item in productList.slice(0,4)" :key="item.id">
                             <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <productbox :pic="item.invPic" :title="item.invName"></productbox>
@@ -44,102 +44,112 @@
         <div class="homeCase">
             <router-link to="case"><h1>行业方案</h1></router-link>
             <div class="xhx"></div>
-            <el-tabs model-value="first">
-                <el-tab-pane label="食品行业" name="first">
-                    <el-row :gutter="20">
-                        <el-col :span="13" v-for="(item,index) in caseList" :key="index" v-show="item.tag === 'food'">
+            <el-tabs v-model="caseTabName" @tab-change="getCaseProduct">
+                <el-tab-pane label="食品行业" name="food">
+                    <el-row :gutter="0">
+                        <el-col :span="13">
                             <div class="tabItemFirst">
                                 <div class="tabItemFirstTitle">
-                                    <h2>{{ item.titleZh }}</h2>
-                                    <h2>{{ item.titleEn }}</h2>
+                                    <h2>{{ caseList.food.titleZh }}</h2>
+                                    <h2>{{ caseList.food.titleEn }}</h2>
                                 </div>
-                                <img :src="item.pic" alt="">
+                                <img :src="caseList.food.pic" alt="">
                             </div>
                         </el-col>
                         <el-col :span="10">
-                            <el-row :gutter="20">
+                            <el-row :gutter="0">
                                 <el-col :span="12" v-for="(item,index) in caseProduct.slice(0,4)" :key="index" >
-                                <productbox :pic="item.pic" :title="item.title"></productbox>
+                                <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
+                                    <productbox :pic="item.invPic" :title="item.invName"></productbox>
+                                </router-link>
                                 </el-col>
                             </el-row>
                         </el-col>
                     </el-row>
                 </el-tab-pane>
-                <el-tab-pane label="3C电子" name="second">
-                    <el-row :gutter="20">
-                        <el-col :span="13" v-for="(item,index) in caseList" :key="index" v-show="item.tag === '3c'">
+                <el-tab-pane label="3C电子" name="3c">
+                    <el-row :gutter="0">
+                        <el-col :span="13">
                             <div class="tabItemFirst">
                                 <div class="tabItemFirstTitle">
-                                    <h2>{{ item.titleZh }}</h2>
-                                    <h2>{{ item.titleEn }}</h2>
+                                    <h2>{{ caseList.threeC.titleZh }}</h2>
+                                    <h2>{{ caseList.threeC.titleEn }}</h2>
                                 </div>
-                                <img :src="item.pic" alt="">
+                                <img :src="caseList.threeC.pic" alt="">
                             </div>
                         </el-col>
                         <el-col :span="10">
-                            <el-row :gutter="20">
+                            <el-row :gutter="0">
                                 <el-col :span="12" v-for="(item,index) in caseProduct.slice(0,4)" :key="index" >
-                                    <productbox :pic="item.pic" :title="item.title"></productbox>
+                                    <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
+                                        <productbox :pic="item.invPic" :title="item.invName"></productbox>
+                                    </router-link>
                                 </el-col>
                             </el-row>
                         </el-col>
                     </el-row>
                 </el-tab-pane>
-                <el-tab-pane label="五金行业" name="third">
-                    <el-row :gutter="20">
-                        <el-col :span="13" v-for="(item,index) in caseList" :key="index" v-show="item.tag === 'hardware'">
+                <el-tab-pane label="五金行业" name="hardware">
+                    <el-row :gutter="0">
+                        <el-col :span="13">
                             <div class="tabItemFirst">
                                 <div class="tabItemFirstTitle">
-                                    <h2>{{ item.titleZh }}</h2>
-                                    <h2>{{ item.titleEn }}</h2>
+                                    <h2>{{ caseList.hardware.titleZh }}</h2>
+                                    <h2>{{ caseList.hardware.titleEn }}</h2>
                                 </div>
-                                <img :src="item.pic" alt="">
+                                <img :src="caseList.hardware.pic" alt="">
                             </div>
                         </el-col>
                         <el-col :span="10">
-                            <el-row :gutter="20">
+                            <el-row :gutter="0">
                                 <el-col :span="12" v-for="(item,index) in caseProduct.slice(0,4)" :key="index" >
-                                    <productbox :pic="item.pic" :title="item.title"></productbox>
+                                    <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
+                                        <productbox :pic="item.invPic" :title="item.invName"></productbox>
+                                    </router-link>
                                 </el-col>
                             </el-row>
                         </el-col>
                     </el-row>
                 </el-tab-pane>
-                <el-tab-pane label="包装印刷" name="four">
-                    <el-row :gutter="20">
-                        <el-col :span="13" v-for="(item,index) in caseList" :key="index" v-show="item.tag === 'solutions'">
+                <el-tab-pane label="包装印刷" name="solutions">
+                    <el-row :gutter="0">
+                        <el-col :span="13">
                             <div class="tabItemFirst">
                                 <div class="tabItemFirstTitle">
-                                    <h2>{{ item.titleZh }}</h2>
-                                    <h2>{{ item.titleEn }}</h2>
+                                    <h2>{{ caseList.solutions.titleZh }}</h2>
+                                    <h2>{{ caseList.solutions.titleEn }}</h2>
                                 </div>
-                                <img :src="item.pic" alt="">
+                                <img :src="caseList.solutions.pic" alt="">
                             </div>
                         </el-col>
                         <el-col :span="10">
-                            <el-row :gutter="20">
+                            <el-row :gutter="0">
                                 <el-col :span="12" v-for="(item,index) in caseProduct.slice(0,4)" :key="index" >
-                                    <productbox :pic="item.pic" :title="item.title"></productbox>
+                                    <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
+                                        <productbox :pic="item.invPic" :title="item.invName"></productbox>
+                                    </router-link>
                                 </el-col>
                             </el-row>
                         </el-col>
                     </el-row>
                 </el-tab-pane>
-                <el-tab-pane label="新能源行业" name="five">
-                    <el-row :gutter="20">
-                        <el-col :span="13" v-for="(item,index) in caseList" :key="index" v-show="item.tag === 'newEnergy'">
+                <el-tab-pane label="新能源行业" name="newEnergy">
+                    <el-row :gutter="0">
+                        <el-col :span="13">
                             <div class="tabItemFirst">
                                 <div class="tabItemFirstTitle">
-                                    <h2>{{ item.titleZh }}</h2>
-                                    <h2>{{ item.titleEn }}</h2>
+                                    <h2>{{ caseList.newEnergy.titleZh }}</h2>
+                                    <h2>{{ caseList.newEnergy.titleEn }}</h2>
                                 </div>
-                                <img :src="item.pic" alt="">
+                                <img :src="caseList.newEnergy.pic" alt="">
                             </div>
                         </el-col>
                         <el-col :span="10">
-                            <el-row :gutter="20">
+                            <el-row :gutter="0">
                                 <el-col :span="12" v-for="(item,index) in caseProduct.slice(0,4)" :key="index" >
-                                    <productbox :pic="item.pic" :title="item.title"></productbox>
+                                    <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
+                                        <productbox :pic="item.invPic" :title="item.invName"></productbox>
+                                    </router-link>
                                 </el-col>
                             </el-row>
                         </el-col>
@@ -152,7 +162,7 @@
             <h1>自主创新 专业品质</h1>
             <p>行走在行业技术前沿的柏锐，以推动行业技术发展进步为己任用持续的创新超越，创造行业新未来</p>
             <el-row :gutter="20" justify="center">
-                <el-col :span="4">
+                <el-col :span="5">
                     <div class="advantageBox">
                         <img src="../assets/img/product_group_3_img.png" alt="image">
                         <div class="advantageText">
@@ -162,7 +172,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="4">
+                <el-col :span="5">
                     <div class="advantageBox">
                         <img src="../assets/img/product_group_3_img.png" alt="image">
                         <div class="advantageText">
@@ -172,7 +182,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="4">
+                <el-col :span="5">
                     <div class="advantageBox">
                         <img src="../assets/img/product_group_3_img.png" alt="image">
                         <div class="advantageText">
@@ -182,7 +192,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="4">
+                <el-col :span="5">
                     <div class="advantageBox">
                         <img src="../assets/img/product_group_3_img.png" alt="image">
                         <div class="advantageText">
@@ -196,7 +206,7 @@
             <h1>实力智造·行业典范</h1>
             <p>依托深厚的技术积累，柏锐打造了技术引进，国际合作，自主研发相结合的模式，不断刷新着行业发展的新高度</p>
             <el-row justify="center">
-                <el-col :span="6">
+                <el-col :span="8">
                     <div class="advantageBox2">
                         <img src="../assets/img/home_top.jpg" alt="image">
                         <div class="advantageText2">
@@ -205,7 +215,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="10">
+                <el-col :span="12">
                     <div class="advantageBox2">
                         <img src="../assets/img/advantage_2.jpg" alt="image">
                         <div class="advantageText2">
@@ -214,7 +224,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="10">
+                <el-col :span="12">
                     <div class="advantageBox2">
                         <img src="../assets/img/advantage_3.jpg" alt="image">
                         <div class="advantageText2">
@@ -223,7 +233,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="6">
+                <el-col :span="8">
                     <div class="advantageBox2">
                         <img src="../assets/img/advantage_4.jpg" alt="image">
                         <div class="advantageText2">
@@ -253,7 +263,7 @@
                 </el-col>
                 <el-col :span="6">
                     <el-tag type="info">行业动态</el-tag>
-                    <el-scrollbar height="460px" always>
+                    <el-scrollbar height="396px" always>
                         <ul>
                             <li v-for="item in newsList" :key="item.id" v-show="item.newTags === '行业动态'">
                                 <div class="newText">
@@ -270,7 +280,7 @@
         <div class="homeAbout">
             <!-- <h1>走进柏锐</h1>
             <p>About BoRui</p> -->
-            <el-row :gutter="20">
+            <el-row :gutter="0">
                 <el-col :span="9" :offset="13">
                     <div class="aboutMes">
                         <h1>东莞市柏锐智能科技有限公司</h1>
@@ -303,96 +313,42 @@ export default{
                     {pic:"http://www.borui1698.com/uploadfile/image/20220524/20220524141038_2087688612.jpg", title:"全自动视觉点钻机"},
                     {pic:"http://www.borui1698.com/uploadfile/image/20220524/20220524141058_502257188.jpg", title:"食品级裱花机"},
             ],
-            caseProduct:[
-                    {
-                        title: "视觉点胶机",
-                        pic: "http://www.borui1698.com/uploadfile/image/20180908/20180908110739_1085594107.jpg",
-                        value: "first"
-                    },
-                    {
-                        title: "视觉点胶机",
-                        pic: "http://www.borui1698.com/uploadfile/image/20180908/20180908110739_1085594107.jpg",
-                        value: "first"
-                    },
-                    {
-                        title: "视觉点胶机",
-                        pic: "http://www.borui1698.com/uploadfile/image/20180908/20180908110739_1085594107.jpg",
-                        value: "first"
-                    },
-                    {
-                        title: "视觉点钻机",
-                        pic: "http://www.borui1698.com/uploadfile/image/20180908/20180908110739_1085594107.jpg",
-                        value: "second"
-                    },
-                    {
-                        title: "视觉点钻机",
-                        pic: "http://www.borui1698.com/uploadfile/image/20180908/20180908110739_1085594107.jpg",
-                        value: "second"
-                    },
-                    {
-                        title: "视觉点钻机",
-                        pic: "http://www.borui1698.com/uploadfile/image/20180908/20180908110739_1085594107.jpg",
-                        value: "second"
-                    },
-                    {
-                        title: "食品裱花机",
-                        pic: "http://www.borui1698.com/uploadfile/image/20200922/20200922095723_1002932004.jpg",
-                        value: "third"
-                    },
-                    {
-                        title: "食品裱花机",
-                        pic: "http://www.borui1698.com/uploadfile/image/20200922/20200922095723_1002932004.jpg",
-                        value: "third"
-                    },
-                    {
-                        title: "食品裱花机",
-                        pic: "http://www.borui1698.com/uploadfile/image/20200922/20200922095723_1002932004.jpg",
-                        value: "third"
-                    },
-                    {
-                        title: "食品裱花机",
-                        pic: "http://www.borui1698.com/uploadfile/image/20200922/20200922095723_1002932004.jpg",
-                        value: "third"
-                    }
-            ],
-            caseList:[
-                    {
+            caseProduct:[],
+            caseList:{
+                "food":{
                        titleZh:"食品行业解决方案",
                        titleEn:"Food Industry Solutions",
                        pic:"http://www.borui1698.com/uploadfile/image/20210930/20210930101938_839942849.jpg",
-                       tag:"food" 
                     },
-                    {
+                "threeC":{
                        titleZh:"3C电子行业解决方案",
                        titleEn:"3C Electronics Industry Solutions",
                        pic:"http://www.borui1698.com/uploadfile/image/20210930/20210930101938_839942849.jpg",
-                       tag:"3c" 
                     },
-                    {
+                "hardware":{
                        titleZh:"五金行业解决方案",
                        titleEn:"Hardware Industry Solutions",
                        pic:"http://www.borui1698.com/uploadfile/image/20210930/20210930101938_839942849.jpg",
-                       tag:"hardware" 
                     },
-                    {
+                "solutions":{
                        titleZh:"包装印刷行业解决方案",
                        titleEn:"Solutions for the Packaging and Printing Industry",
                        pic:"http://www.borui1698.com/uploadfile/image/20210930/20210930101938_839942849.jpg",
-                       tag:"solutions" 
                     },
-                    {
+                "newEnergy":{
                        titleZh:"新能源行业解决方案",
                        titleEn:"New Energy Industry Solutions",
                        pic:"http://www.borui1698.com/uploadfile/image/20210930/20210930101938_839942849.jpg",
-                       tag:"newEnergy" 
                     }
-            ],
+            },
             newsList:[],
             tabName:'101',
+            caseTabName:'food',
             productList:[]
         }
     },
     methods:{
+        // 产品
         homeDataFilter(name){
             axios.get('http://127.0.0.1/productList/getfilter',{
                 params:{
@@ -400,27 +356,37 @@ export default{
                 }
             }).then(res => {
                 this.productList = res.data
-
             }).catch(err => {
                 console.log("获取数据失败：" + err);
             })
         },
-        homeNewsDataGet(name){
-            axios.get('http://127.0.0.1/news/get',{
-                params:{
-                    newtags: this.tabName
-                }
-            }).then(res =>{
+        // 新闻
+        homeNewsDataGet(){
+            axios.get('http://127.0.0.1/news/get').then(res =>{
                 this.newsList = res.data;
-                console.log(this.newsList);
+                // console.log(this.newsList);
             }).catch(err =>{
                 console.log("获取数据失败："+err);
+            })
+        },
+        // 行业方案相关产品
+        getCaseProduct(name){
+            axios.get('http://127.0.0.1/productList/getcaseproduct',{
+                params:{
+                    casetags: name
+                }
+            }).then(res =>{
+                // console.log(res.data);
+                this.caseProduct = res.data
+            }).catch(err =>{
+                console.log("获取数据失败"+err);
             })
         }
     },
     mounted(){
         this.homeDataFilter(this.tabName)
         this.homeNewsDataGet()
+        this.getCaseProduct(this.caseTabName)
     },
     components:{
         productbox
@@ -496,11 +462,11 @@ a{
     margin: 10px;
     position: relative;
     overflow: hidden;
+    height: 100%;
 }
 .tabItemFirst img{
-    width: 100%;
+    width: auto;
     height: 100%;
-    padding: 0 0 15px 15px;
 }
 .tabItemFirstTitle{
     text-align: left;
@@ -517,11 +483,11 @@ a{
     /* border: 1px solid black; */
     text-align: left;
 }
-.newBox{
+/* .newBox{
     height: 460px;
-}
+} */
 .newPic{
-    height: 345px;
+    height: 280px;
     overflow: hidden;
     position: relative;
 }
@@ -535,8 +501,8 @@ a{
     /* object-fit: cover; */
 }
 .newBox:hover .newPic img{
-    left: -50%;
-    transform: scale(150%);
+    left: -25%;
+    transform: scale(110%);
     transition: all 0.3s ease-in;
 }
 .newText{

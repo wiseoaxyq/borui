@@ -12,6 +12,12 @@ import NewsDetails from './views/NewsDetails.vue'
 import About from './views/About.vue'
 import Contact from './views/Contact.vue'
 
+// 后台页面
+import Login from './views/Login.vue'
+import Admin from './views/Admin.vue'
+import Users from './views/Admin/User.vue'
+import adminAbout from './views/Admin/About.vue'
+
 const router = createRouter({
     history:createWebHashHistory(),
     routes:[
@@ -29,15 +35,15 @@ const router = createRouter({
             component: ProductDetails
         },
         {
-            path:'/Case',
+            path:'/case',
             component: Case
         },
         {
-            path:'/Service',
+            path:'/service',
             component: Service
         },
         {
-            path:'/News',
+            path:'/news',
             component: News
         },
         {
@@ -46,13 +52,43 @@ const router = createRouter({
             component: NewsDetails
         },
         {
-            path:'/About',
+            path:'/about',
             component: About
         },
         {
-            path:'/Contact',
+            path:'/contact',
             component: Contact
+        },
+        {
+            path:'/login',
+            component: Login
+        },
+        {
+            path:'/admin',
+            component: Admin,
+            meta: { requiresAuth: true },
+            children:[
+                {
+                    path:'/admin/users',
+                    component: Users,
+                },
+                {
+                    path:'/admin/about',
+                    component: adminAbout
+                }
+            ]
         }
     ]
 });
+
+// 验证Token
+router.beforeEach((to, from, next) => {
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+    if (requiresAuth && !localStorage.getItem('token')) {
+        next('/login');
+        console.log('请先登录');
+    } else {
+        next();
+    }
+})
 export default router

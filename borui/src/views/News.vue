@@ -58,18 +58,18 @@ export default{
         newsDataGet(name){
             axios.get('http://127.0.0.1/news/getfilter',{
                 params:{
-                    newtags: this.tabName
+                    newtags: name
                 }
             }).then(res =>{
                 this.newsList = res.data;
-                console.log(this.newsList);
+                // console.log(this.newsList);
             }).catch(err =>{
                 console.log("获取数据失败："+err);
             })
         }
     },
     mounted(){
-        this.newsDataGet()
+        this.newsDataGet(this.tabName)
     },
     components:{
         banner

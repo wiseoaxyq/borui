@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-container>
-      <el-header class="menuFixed">
+      <el-header class="menuFixed" v-if="$route.path !=='/login'">
         <div class="logo">
           <img src="./assets/img/toplogo.png" alt="logo">
         </div>
@@ -34,7 +34,7 @@
       <el-main>
         <router-view></router-view>
       </el-main>
-      <el-footer>
+      <el-footer v-if="$route.path !=='/login'">
         <el-backtop :right="50" :bottom="100" />
         <div class="footerLogo">
           <img src="./assets/img/toplogo.png" alt="logo">
@@ -165,7 +165,6 @@
 /* main */
 .el-main{
   margin: 0;
-  margin-top: 70px;
   padding: 0;
   overflow: hidden;
 }

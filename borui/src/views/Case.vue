@@ -333,7 +333,7 @@ export default{
                     casetags: name
                 }
             }).then(res =>{
-                console.log(res.data);
+                // console.log(res.data);
                 this.productList = res.data
             }).catch(err =>{
                 console.log("获取数据失败"+err);
