@@ -14,7 +14,7 @@
                 </div>
                 <h1>培训政策</h1>
                 <el-row justify="center">
-                    <el-col :span="12" class="aboutText">
+                    <el-col :xs="24" :sm="12" class="aboutText">
                         <el-scrollbar height="640px">
                         <h3>用户培训内容:</h3>
                         <p>1、用户培训是市场服务体系的重要环节。除了前期和客户充分的技术交流，创轩激光通常会在客户验收时对其进行完整的技术培训。+项荣誉证书。</p>
@@ -30,7 +30,7 @@
                         <p>3、不定期安排工程师免费上门检查、维护设备，对所售设备实行全天候服务。</p>
                         </el-scrollbar>
                     </el-col>
-                    <el-col :span="12" class="aboutPicBox">
+                    <el-col :xs="0" :sm="12" class="aboutPicBox">
                         <div class="aboutPic">
                             <img src="../assets/img/jianjietopmin.jpg" alt="">
                         </div>
@@ -41,8 +41,37 @@
                 </el-row>
             </el-tab-pane>
             <el-tab-pane label="技术支持" name="1" class="serverBox">
-                <h2>这里所有的柏锐人都必将竭诚为您服务</h2>
-                <p>创轩激光专注于电子、服装、广告、金属制品、家具制品、工艺制品等广泛行业中的激光打标、切割等运用设备的研发与制造，提供顶级成套流水线解决方案，非标产品的订制及其解决方案等。十年市场运作经验累积，已为全球几十个国家和地区的用户量身定制出经济效益分析报告，在此基础上优化工艺设备和生产流程，实现了业务的可持续发展。</p>
+                <div style="margin: 20px 0px;">
+                    <h2 style="margin: 10px 0;">这里所有的柏锐人都必将竭诚为您服务</h2>
+                    <p>创轩激光专注于电子、服装、广告、金属制品、家具制品、工艺制品等广泛行业中的激光打标、切割等运用设备的研发与制造，提供顶级成套流水线解决方案，非标产品的订制及其解决方案等。十年市场运作经验累积，已为全球几十个国家和地区的用户量身定制出经济效益分析报告，在此基础上优化工艺设备和生产流程，实现了业务的可持续发展。</p>
+                </div>
+                <el-row>
+                    <el-col :xs="24" :sm="12" v-for="(item,index) in supportText" :key="index">
+                        <div class="supportBox">
+                            <h3 style="margin-bottom: 10px;">{{ item.title }}</h3>
+                            <p>{{ item.t1 }}</p>
+                            <p>{{ item.t2 }}</p>
+                        </div>
+                    </el-col>
+                </el-row>
+                <div style="margin: 20px 0px;">
+                    <h2 style="margin: 10px 0;">完善细致的服务流程</h2>
+                    <p>我们以客户利益为本，以服务为核心，为客户量身打造高性价比的产品，提供完善细致的服务，十年如一日</p>
+                </div>
+                <el-row>
+                    <el-col :xs="16" :sm="16" :md="12">
+                        <div class="supportBox2Bg"></div>
+                    </el-col>
+                    <el-col :xs="8" :sm="8" :md="6" v-for="(item,index) in supportText2" :key="index">
+                        <div class="supportBox2">
+                            <div>
+                                <h3>{{ item.title }}</h3>
+                                <p>{{ item.t1 }}</p>
+                            </div>
+                        </div>
+                    </el-col>
+                </el-row>
+
             </el-tab-pane>
             <el-tab-pane label="常见问题" name="2" class="serverBox">
                 <el-collapse model-value="1" accordion>
@@ -124,13 +153,27 @@
                 </el-collapse-item>
                 </el-collapse>
             </el-tab-pane>
-            <el-tab-pane label="下载中心" name="5" class="serverBox"></el-tab-pane>
+            <el-tab-pane label="下载中心" name="5" class="serverBox">
+                <el-row>
+                    <el-col :span="6" v-for="item in fileList" :key="item.id">
+                        <div class="downloadsBox">
+                            <img :src="fileImg" alt="file">
+                            <p>{{ item.title }}</p>
+                            <!-- <p>{{ item.createDate }}</p> -->
+                            <el-button type="primary">
+                                <a :href="item.url" target="_blank">下载</a>
+                            </el-button>
+                        </div>
+                    </el-col>
+                </el-row>
+            </el-tab-pane>
         </el-tabs>
     </div>
 </template>
 
 <script>
 import banner from '../components/banner.vue'
+import axios from 'axios'
 
 export default{
     name:'service',
@@ -148,11 +191,43 @@ export default{
                 {icon:'../src/assets/img/server_icon_7.png',title:'配件选配安装培训'},
                 {icon:'../src/assets/img/server_icon_8.png',title:'流水线配置培训'},
                 {icon:'../src/assets/img/server_icon_9.png',title:'材料加工工艺培训'}
+            ],
+            fileList:[],
+            fileImg:'./src/assets/img/pdf.png',
+            supportText:[
+                {title:'精准管控',t1:'精准管控成本核算，科学计算预期收益，实现降本增效，盈利可期。',t2:'从前期设备选型、方案规划，到中期设备产能优化提升，再到后期的售后服务，我们有专业的项目团队全程跟踪，为您规避风险，提升项目价值，服务链贯穿始终。'},
+                {title:'私人定制',t1:'根据客户实际需求，制定多套工艺方案进行对比分析，选定合理的方案，实现私人定制。',t2:'我们的服务贯穿现场地形环境勘测、生产线工艺设计、原料检测、成本要求分析、项目投资预算、设备安装调试等各个环节。'},
+                {title:'共同见证',t1:'聚焦全球几十个国家和地区的成功案例，实地考察从单机到整条流水生产线的每一道工序。',t2:'上万家客户运营收益比清晰可考，共同检验从设计研发团队到安装维修团队的整套服务体系，见证整个工艺项目体系的投资价值实现。'},
+                {title:'培训支持',t1:'我们为客户派遣的技术人员提供全面系统的培训，以便更好地满足生产工艺项目或设备需求。技术人员实践操作期间，我们的培训讲师也将持续跟进项目运营，投入充足的力度和支持，确保项目的有序开展。',t2:''},
+            ],
+            supportText2:[
+                {title:'01',t1:'专业解答客户咨询'},
+                {title:'02',t1:'推荐合适的产品'},
+                {title:'03',t1:'量身定制解决方案'},
+                {title:'04',t1:'严格检验准时发货'},
+                {title:'05',t1:'协助拟定生产方案'},
+                {title:'06',t1:'指导设备置放'},
+                {title:'07',t1:'指导安装与调试'},
+                {title:'08',t1:'技术培训与维修'},
+                {title:'09',t1:'定期回访'},
+                {title:'10',t1:'提供技术改进方案和设备信息'},
             ]
+        }
+    },
+    methods:{
+        getFiles(){
+            axios.get('http://127.0.0.1:3000/downloads/getallfiles').then(res=>{
+                this.fileList = res.data;
+            }).catch(err =>{
+                console.log("数据获取失败"+err);
+            })
         }
     },
     components:{
         banner
+    },
+    mounted(){
+        this.getFiles()
     }
 }
 </script>
@@ -187,6 +262,40 @@ export default{
     transform: scale(60%);
 }
 
+/* 技术支持 */
+.supportBox{
+    background-color: #f2f2f2;
+    height: 160px;
+    padding: 20px;
+    margin: 10px;
+}
+.supportBox2{
+    background-color: #f2f2f2;
+    text-align: center;
+    /* width: 150px; */
+    height: 150px;
+    margin: 10px;
+    padding: 10px;
+    position: relative;
+}
+.supportBox2 div{
+    width:80%;
+    position:absolute;
+    top:28%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 30px;
+}
+.supportBox2Bg{
+    height: 150px;
+    margin: 10px;
+    padding: 10px;
+    background-image: url(../assets/img/about2.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
 /* 折叠面板动效 */
 .el-collapse-item__header.is-active{
     font-size: 20px;
@@ -194,5 +303,17 @@ export default{
 }
 .el-collapse-item__header{
     transition: all 0.2s ease-in 0s;
+}
+
+/* 下载中心 */
+.downloadsBox{
+    text-align: center;
+    margin: 20px;
+}
+.downloadsBox img{
+    width: 60px;
+}
+.downloadsBox p{
+    margin: 10px;
 }
 </style>

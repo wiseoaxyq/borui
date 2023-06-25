@@ -6,19 +6,19 @@
 
         <!-- banner -->
         <el-carousel height="580px" class="homeBanner">
-            <el-carousel-item v-for="(item, index) in homeBanner" :key="index">
-                <img :src="item.pic" :alt="item.title">
+            <el-carousel-item v-for="item in homeBanner" :key="item.id">
+                <img :src="item.url" :alt="item.notes">
             </el-carousel-item>
         </el-carousel>
         <!-- 热销产品 -->
         <div class="hot">
             <h1>热销机型</h1>
             <el-row :gutter="0" justify="center">
-                <el-col :span="6" v-for="item in productHot" :key="item.id">
+                <el-col :span="6" v-for="item in productList.slice(0,3)" :key="item.id">
                     <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                     <div class="hotItem">
                         <div class="hotImg">
-                            <img :src="item.hotPic" alt="image">
+                            <img :src="item.invPic" alt="image">
                             <h2>{{ item.invName }}</h2>
                             <p>查看详情 ></p>
                         </div>
@@ -31,7 +31,7 @@
         <el-tabs v-model="tabName" @tab-change="dataFilter">
             <el-tab-pane label="全部产品" name="0">
                 <el-row :gutter="0">
-                    <el-col :span="8" v-for="item in productList" :key="item.id">
+                    <el-col :xs="12" :sm="8" v-for="item in productList" :key="item.id">
                         <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <productbox :pic="item.invPic" :title="item.invName"></productbox>
                         </router-link>
@@ -42,7 +42,7 @@
                 <!-- 二级分类 -->
                 <el-button class="filter2" v-for ="item in productFilter2" :key="item.id" @click="dataFilter2(item.filterId)">{{ item.filterName }}</el-button>
                 <el-row :gutter="0">    
-                    <el-col :span="8" v-for="item in productList2" :key="item.id">
+                    <el-col :xs="12" :sm="8" v-for="item in productList2" :key="item.id">
                         <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <productbox :pic="item.invPic" :title="item.invName"></productbox>
                         </router-link>
@@ -53,7 +53,7 @@
                 <!-- 二级分类 -->
                 <el-button class="filter2" v-for ="item in productFilter2" :key="item.id" @click="dataFilter2(item.filterId)">{{ item.filterName }}</el-button>
                 <el-row :gutter="0">
-                    <el-col :span="8" v-for="item in productList2" :key="item.id">
+                    <el-col :xs="12" :sm="8" v-for="item in productList2" :key="item.id">
                         <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <productbox :pic="item.invPic" :title="item.invName"></productbox>
                         </router-link>
@@ -64,7 +64,7 @@
                 <!-- 二级分类 -->
                 <el-button class="filter2" v-for ="item in productFilter2" :key="item.id" @click="dataFilter2(item.filterId)">{{ item.filterName }}</el-button>
                 <el-row :gutter="0">
-                    <el-col :span="8" v-for="item in productList2" :key="item.id">
+                    <el-col :xs="12" :sm="8" v-for="item in productList2" :key="item.id">
                         <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <productbox :pic="item.invPic" :title="item.invName"></productbox>
                         </router-link>
@@ -107,19 +107,28 @@ export default {
             productList: [],
             productList2:[],
             productFilter2:[],
-            productHot:[],
+            // productHot:[],
             tabName:'0',
-            homeBanner:[
-                    {pic:"http://www.borui1698.com/uploadfile/image/20220524/20220524141027_670735165.jpg", title:"全自动视觉点胶机"},
-                    {pic:"http://www.borui1698.com/uploadfile/image/20220524/20220524141038_2087688612.jpg", title:"全自动视觉点钻机"},
-                    {pic:"http://www.borui1698.com/uploadfile/image/20220524/20220524141058_502257188.jpg", title:"食品级裱花机"},
-            ],
+            homeBanner:[],
+            bannerFilter:'product'
         }
     },
     methods: {
+        // banner
+        getBanner(){
+            axios.get('http://127.0.0.1:3000/banner/getfilter',{
+                params:{
+                    filter: this.bannerFilter
+                }
+            }).then(res => {
+                this.homeBanner = res.data
+            }).catch(err => {
+                console.log("获取数据失败：" + err);
+            })
+        },
         // 获取所有产品数据
         dataGet() {
-            axios.get('http://127.0.0.1/productList/get').then(res => {
+            axios.get('http://127.0.0.1:3000/productList/get').then(res => {
                 // console.log(res.data);
                 this.productList = res.data
 
@@ -132,7 +141,7 @@ export default {
             if(name === '0'){
                 this.dataGet();
             }else{
-                axios.get('http://127.0.0.1/productList/getfilter',{
+                axios.get('http://127.0.0.1:3000/productList/getfilter',{
                     params:{
                         invtags: name
                     }
@@ -149,7 +158,7 @@ export default {
         },
         // 获取产品的二级分类
         filter2(key){
-            axios.get('http://127.0.0.1/productList/filter2',{
+            axios.get('http://127.0.0.1:3000/productList/filter2',{
                 params:{
                     filterfather: key
                 }
@@ -163,7 +172,7 @@ export default {
         // 获取二级分类产品数据
         dataFilter2(key){
             // console.log(key);
-            axios.get('http://127.0.0.1/productList/getfilter2',{
+            axios.get('http://127.0.0.1:3000/productList/getfilter2',{
                 params:{
                     invtags2: key
                 }
@@ -175,20 +184,21 @@ export default {
             })
         },
         // 获取热销产品数据
-        dataHot() {
-            axios.get('http://127.0.0.1/productList/getHot').then(res => {
-                // console.log(res.data);
-                this.productHot = res.data
+        // dataHot() {
+        //     axios.get('http://127.0.0.1:3000/productList/getHot').then(res => {
+        //         // console.log(res.data);
+        //         this.productHot = res.data
 
-            }).catch(err => {
-                console.log("获取数据失败：" + err);
-            })
-        },
+        //     }).catch(err => {
+        //         console.log("获取数据失败：" + err);
+        //     })
+        // },
     },
     mounted() {
         // onload加载所有数据
+        this.getBanner()
         this.dataGet()
-        this.dataHot()
+        // this.dataHot()
     },
     components:{
         banner,
@@ -224,6 +234,8 @@ export default {
     width: 100%;
     z-index: 0;
     width: 100%;
+    position: relative;
+    left: 27%;
     transition: all 0.5s ease-in 0s;
 }
 .hotImg img:hover{

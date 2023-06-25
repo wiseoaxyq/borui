@@ -4,7 +4,7 @@
         <el-tabs v-model="tabName" @tab-change="newsDataGet">
             <el-tab-pane label="新闻资讯" name="新闻资讯">
                 <el-row :gutter="0" justify="center">
-                    <el-col v-for="(item, index) in newsList" :key="index" :span="8">
+                    <el-col v-for="(item, index) in newsList" :key="index" :xs="24" :sm="12" :md="8">
                         <router-link :to="{name:'newsdetails', params:{id: item.id}}">
                         <div class="newsBox">
                             <div class="newsPic">
@@ -12,7 +12,7 @@
                             </div>
                             <div class="newsText">
                                 <h3>{{ item.newTitle }}</h3>
-                                <p>{{ Date(item.newDate) }}</p>
+                                <p>{{ item.newDate }}</p>
                             </div>
                         </div>
                         </router-link>
@@ -21,7 +21,7 @@
             </el-tab-pane>
             <el-tab-pane label="行业动态" name="行业动态">
                 <el-row :gutter="0" justify="center">
-                    <el-col v-for="(item, index) in newsList" :key="index" :span="8">
+                    <el-col v-for="(item, index) in newsList" :key="index" :xs="24" :sm="12" :md="8">
                         <router-link :to="{name:'newsdetails', params:{id: item.id}}"> 
                         <div class="newsBox">
                             <div class="newsPic">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="newsText">
                                 <h3>{{ item.newTitle }}</h3>
-                                <p>{{ Date(item.newDate) }}</p>
+                                <p>{{ item.newDate }}</p>
                             </div>
                         </div>
                         </router-link>
@@ -56,7 +56,7 @@ export default{
     methods:{
         // 获取新闻列表
         newsDataGet(name){
-            axios.get('http://127.0.0.1/news/getfilter',{
+            axios.get('http://127.0.0.1:3000/news/getfilter',{
                 params:{
                     newtags: name
                 }
@@ -87,19 +87,20 @@ export default{
 .newsPic{
     height: 280px;
     overflow: hidden;
-    position: relative;
+    /* position: relative; */
 }
 .newsPic img{
     float: none;
     height: 100%;
-    position: absolute;
-    transform: translateX(-50%);
-    left: 50%;
+    width: 100%;
+    /* position: absolute; */
+    /* transform: translateX(-50%); */
+    /* left: 50%; */
     transition: all 0.3s ease-in 0s;
 }
 .newsBox:hover .newsPic img{
     transform: scale(110%);
-    left: -20%;
+    /* left: -20%; */
     transition: all 0.3s ease-in;
 }
 .newsText{

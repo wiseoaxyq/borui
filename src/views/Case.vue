@@ -7,7 +7,7 @@
                 <div class="caseBox">
                     <h1>应用概览</h1>
                     <el-row :gutter="0">
-                    <el-col :span="8" v-for="(item,index) in caseUse.food" :key="index">
+                    <el-col :xs="12" :sm="8" v-for="(item,index) in caseUse.food" :key="index">
                         <productbox :pic="item.pic" :title="item.titleZh"></productbox>
                     </el-col>
                 </el-row>
@@ -31,7 +31,7 @@
                 <div class="caseBox">
                     <h1>相关机型</h1>
                     <el-row :gutter="0">
-                        <el-col :span="6" v-for="(item, index) in productList" :key="index">
+                        <el-col :xs="12" :sm="8" :md="6" v-for="(item, index) in productList" :key="index">
                             <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <div class="hotItem">
                                 <div class="hotImg">
@@ -50,7 +50,7 @@
                 <div class="caseBox">
                     <h1>应用概览</h1>
                     <el-row :gutter="0">
-                    <el-col :span="8" v-for="(item,index) in caseUse.food" :key="index">
+                    <el-col :xs="12" :sm="8" v-for="(item,index) in caseUse.food" :key="index">
                         <productbox :pic="item.pic" :title="item.titleZh"></productbox>
                     </el-col>
                 </el-row>
@@ -74,7 +74,7 @@
                 <div class="caseBox">
                     <h1>相关机型</h1>
                     <el-row :gutter="0">
-                        <el-col :span="6" v-for="(item, index) in productList" :key="index">
+                        <el-col :xs="12" :sm="8" :md="6" v-for="(item, index) in productList" :key="index">
                             <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <div class="hotItem">
                                 <div class="hotImg">
@@ -93,7 +93,7 @@
                 <div class="caseBox">
                     <h1>应用概览</h1>
                     <el-row :gutter="0">
-                    <el-col :span="8" v-for="(item,index) in caseUse.hardware" :key="index">
+                    <el-col :xs="12" :sm="8" v-for="(item,index) in caseUse.hardware" :key="index">
                         <productbox :pic="item.pic" :title="item.titleZh"></productbox>
                     </el-col>
                 </el-row>
@@ -117,7 +117,7 @@
                 <div class="caseBox">
                     <h1>相关机型</h1>
                     <el-row :gutter="0">
-                        <el-col :span="6" v-for="(item, index) in productList" :key="index">
+                        <el-col :xs="12" :sm="8" :md="6" v-for="(item, index) in productList" :key="index">
                             <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <div class="hotItem">
                                 <div class="hotImg">
@@ -136,7 +136,7 @@
                 <div class="caseBox">
                     <h1>应用概览</h1>
                     <el-row :gutter="0">
-                    <el-col :span="8" v-for="(item,index) in caseUse.solutions" :key="index">
+                    <el-col :xs="12" :sm="8" v-for="(item,index) in caseUse.solutions" :key="index">
                         <productbox :pic="item.pic" :title="item.titleZh"></productbox>
                     </el-col>
                 </el-row>
@@ -160,7 +160,7 @@
                 <div class="caseBox">
                     <h1>相关机型</h1>
                     <el-row :gutter="0">
-                        <el-col :span="6" v-for="(item, index) in productList" :key="index">
+                        <el-col :xs="12" :sm="8" :md="6" v-for="(item, index) in productList" :key="index">
                             <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <div class="hotItem">
                                 <div class="hotImg">
@@ -179,7 +179,7 @@
                 <div class="caseBox">
                     <h1>应用概览</h1>
                     <el-row :gutter="0">
-                    <el-col :span="8" v-for="(item,index) in caseUse.newEnergy" :key="index">
+                    <el-col :xs="12" :sm="8" v-for="(item,index) in caseUse.newEnergy" :key="index">
                         <productbox :pic="item.pic" :title="item.titleZh"></productbox>
                     </el-col>
                 </el-row>
@@ -203,7 +203,7 @@
                 <div class="caseBox">
                     <h1>相关机型</h1>
                     <el-row :gutter="0">
-                        <el-col :span="6" v-for="(item, index) in productList" :key="index">
+                        <el-col :xs="12" :sm="8" :md="6" v-for="(item, index) in productList" :key="index">
                             <router-link :to="{ name: 'productdetails', params: { id: item.id }}">
                             <div class="hotItem">
                                 <div class="hotImg">
@@ -328,7 +328,7 @@ export default{
     },
     methods:{
         getCaseProduct(name){
-            axios.get('http://127.0.0.1/productList/getcaseproduct',{
+            axios.get('http://127.0.0.1:3000/productList/getcaseproduct',{
                 params:{
                     casetags: name
                 }

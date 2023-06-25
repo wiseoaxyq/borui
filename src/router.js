@@ -18,7 +18,10 @@ import Admin from './views/Admin.vue'
 import User from './views/Admin/User.vue'
 import AdminProduct from './views/Admin/Product.vue'
 import AdminNews from './views/Admin/News.vue'
-import Message from './views/Admin/message.vue'
+import Message from './views/Admin/Message.vue'
+import Banner from './views/Admin/Banner.vue'
+import CaseBanner from './views/Admin/caseBanner.vue'
+import Downloads from './views/Admin/Downloads.vue'
 
 const router = createRouter({
     history:createWebHashHistory(),
@@ -85,6 +88,18 @@ const router = createRouter({
                 {
                     path:'/admin/message',
                     component: Message
+                },
+                {
+                    path:'/admin/banner',
+                    component: Banner
+                },
+                {
+                    path:'/admin/casebanner',
+                    component: CaseBanner
+                },
+                {
+                    path:'/admin/downloads',
+                    component: Downloads
                 }
             ]
         }

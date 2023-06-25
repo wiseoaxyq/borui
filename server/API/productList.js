@@ -71,7 +71,7 @@ exports.getHot = (req, res)  => {
 // 查询行业方案相关产品
 exports.getCaseProduct = (req, res)  => {
     // json数组的查询方法
-    var sql = `SELECT id,invName,invPic FROM borui_productlist where JSON_SEARCH(caseTags, 'all', ?) IS NOT NULL`
+    var sql = `SELECT id,invName,invPic FROM borui_productlist where JSON_SEARCH(caseTags, 'all', ?) IS NOT NULL and isDel = 1`
     db.query(sql, [req.query.casetags], (err, data) => {
         if(err){
             return res.send('错误：'+err.message);

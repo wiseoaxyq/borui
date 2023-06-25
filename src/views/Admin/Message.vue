@@ -27,7 +27,7 @@ export default{
     methods:{
         // 获取留言列表
         getMessage(){
-            axios.get('http://127.0.0.1/message/getallinfo').then(res => {
+            axios.get('http://127.0.0.1:3000/message/getallinfo').then(res => {
                 this.tableData = res.data;
                 // console.log(this.tableData);
             }).catch(err => {

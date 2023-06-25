@@ -20,7 +20,7 @@
 
         <!-- 新增按钮的弹窗 -->
         <el-dialog v-model="dialogAdd" title="新增用户" class="dialogForm" :before-close="closeAddDialog">
-            <el-form :model="dialogForm" ref="dialogForm">
+            <el-form :model="dialogForm" ref="dialogForm" :rules="rules">
                 <el-form-item label="昵称：" prop="name">
                     <el-input v-model="dialogForm.name" placeholder="昵称"/>
                 </el-form-item>
@@ -28,7 +28,7 @@
                     <el-input v-model="dialogForm.username" placeholder="用户名"/>
                 </el-form-item>
                 <el-form-item label="密码：" prop="password">
-                    <el-input v-model="dialogForm.password" placeholder="密码"/>
+                    <el-input v-model="dialogForm.password" type="password" placeholder="密码"/>
                 </el-form-item>
                 <el-form-item label="角色：" prop="role">
                     <el-select v-model="dialogForm.role" placeholder="请选择角色">
@@ -50,7 +50,7 @@
 
         <!-- 修改按钮的弹窗 -->
         <el-dialog v-model="dialogUpdate" title="修改用户" class="dialogForm" :before-close="closeUpdateDialog">
-            <el-form :model="dialogForm" ref="dialogForm">
+            <el-form :model="dialogForm" ref="dialogForm" :rules="rules">
                 <el-form-item label="昵称：" prop="name">
                     <el-input v-model="dialogForm.name" placeholder="昵称"/>
                 </el-form-item>
@@ -93,13 +93,19 @@ export default{
             uid:'',
             dialogAdd: false,
             dialogUpdate: false,
-            dialogForm:{id:'',name:'',username:'',password:'',role:'',note:''}
+            dialogForm:{id:'',name:'',username:'',password:'',role:'',note:''},
+            rules:{
+                name:{required:true,message:'请输入昵称',trigger:'blur'},
+                username:{required:true,message:'请输入用户名',trigger:'blur'},
+                password:{required:true,message:'请输入密码',trigger:'blur'},
+                role:{required:true,message:'请选择角色',trigger:'blur'},
+            }
         }
     },
     methods:{
         // 获取用户列表
         getUser(){
-            axios.get('http://127.0.0.1/user/getuser').then(res=>{
+            axios.get('http://127.0.0.1:3000/user/getuser').then(res=>{
                 this.tableData = res.data;
             }).catch(err =>{
                 console.log("数据获取失败"+err);
@@ -107,39 +113,44 @@ export default{
         },
         // 新增用户
         addUser(){
-            this.uid = nanoid();
-            axios.get('http://127.0.0.1/user/insuser',{
-                params:{
-                    id: this.uid,
-                    name: this.dialogForm.name,
-                    username: this.dialogForm.username,
-                    password: this.dialogForm.password,
-                    role: this.dialogForm.role,
-                    note: this.dialogForm.note
-                }
-            }).then(res=>{
-                console.log(res.data);
-                if(res.data.status == 200){
-                    this.$message({
-                        message:'提交成功',
-                        type:'success'
+            this.$refs.dialogForm.validate(valid=>{
+                if(valid){  // 检验通过后，调用接口新增
+                    this.uid = nanoid();
+                    axios.get('http://127.0.0.1:3000/user/insuser',{
+                        params:{
+                            id: this.uid,
+                            name: this.dialogForm.name,
+                            username: this.dialogForm.username,
+                            password: this.dialogForm.password,
+                            role: this.dialogForm.role,
+                            note: this.dialogForm.note
+                        }
+                    }).then(res=>{
+                        console.log(res.data);
+                        if(res.data.status == 200){
+                            this.$message({
+                                message:'提交成功',
+                                type:'success'
+                            })
+                            this.dialogForm = {}  //提交后初始化表单
+                            this.dialogAdd = false  // 关闭弹窗
+                            this.getUser()  //刷新列表
+                        }else{
+                            this.$message({
+                                message:'提交失败',
+                                type:'error'
+                            })
+                        }
+                    }).catch(err=>{
+                        console.log("操作失败："+err);
+                        this.$message({
+                            message:'提交失败',
+                            type:'error'
+                        })
                     })
-                    this.dialogForm = {}  //提交后初始化表单
-                    this.dialogAdd = false  // 关闭弹窗
-                    this.getUser()  //刷新列表
-                }else{
-                    this.$message({
-                        message:'提交失败',
-                        type:'error'
-                    })
                 }
-            }).catch(err=>{
-                console.log("操作失败："+err);
-                this.$message({
-                    message:'提交失败',
-                    type:'error'
-                })
             })
+            
         },
         // 关闭新增弹窗
         closeAddDialog(){
@@ -160,35 +171,40 @@ export default{
         },
         // 修改用户信息
         updateUser(){
-            axios.get('http://127.0.0.1/user/updateUser',{
-                params:{
-                    id: this.dialogForm.id,
-                    name: this.dialogForm.name,
-                    username: this.dialogForm.username,
-                    password: this.dialogForm.password,
-                    role: this.dialogForm.role,
-                    note: this.dialogForm.note
-                }
-            }).then(res=>{
-                console.log(res.data);
-                if(res.data.status == 200){
-                    this.$message({
-                        message:'提交成功',
-                        type:'success'
+            this.$refs.dialogForm.validate(valid=>{
+                if(valid){
+                    axios.get('http://127.0.0.1:3000/user/updateUser',{
+                        params:{
+                            id: this.dialogForm.id,
+                            name: this.dialogForm.name,
+                            username: this.dialogForm.username,
+                            password: this.dialogForm.password,
+                            role: this.dialogForm.role,
+                            note: this.dialogForm.note
+                        }
+                    }).then(res=>{
+                        console.log(res.data);
+                        if(res.data.status == 200){
+                            this.$message({
+                                message:'提交成功',
+                                type:'success'
+                            })
+                            this.dialogForm = {}  //提交后初始化表单
+                            this.dialogUpdate = false  // 关闭弹窗
+                            this.getUser()  //刷新列表
+                        }else{
+                            this.$message({
+                                message:'提交失败',
+                                type:'error'
+                            })
+                        }
+                    }).catch(err=>{
+                        console.log("操作失败："+err);
+                        alert('提交失败')
                     })
-                    this.dialogForm = {}  //提交后初始化表单
-                    this.dialogUpdate = false  // 关闭弹窗
-                    this.getUser()  //刷新列表
-                }else{
-                    this.$message({
-                        message:'提交失败',
-                        type:'error'
-                    })
                 }
-            }).catch(err=>{
-                console.log("操作失败："+err);
-                alert('提交失败')
             })
+            
         },
         // 删除用户
         delUser(row){
@@ -200,7 +216,7 @@ export default{
                     type: 'warning'
                 }
             ).then(()=>{
-                axios.get('http://127.0.0.1/user/delUser',{
+                axios.get('http://127.0.0.1:3000/user/delUser',{
                     params:{
                         id: row.id
                     }

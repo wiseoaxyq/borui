@@ -20,6 +20,9 @@
             <el-menu-item index="/admin/product">产品管理</el-menu-item>
             <el-menu-item index="/admin/news">文章管理</el-menu-item>
             <el-menu-item index="/admin/message">留言管理</el-menu-item>
+            <el-menu-item index="/admin/banner">轮播图管理</el-menu-item>
+            <el-menu-item index="/admin/casebanner">行业封面管理</el-menu-item>
+            <el-menu-item index="/admin/downloads">下载文件管理</el-menu-item>
           </el-menu>
         </el-aside>
         <!-- 视图 -->

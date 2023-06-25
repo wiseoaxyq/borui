@@ -45,7 +45,7 @@
                 <el-form-item label="封面图片：" prop="pic">
                     <el-upload 
                         ref="upload"
-                        action="http://127.0.0.1/upload"
+                        action="http://127.0.0.1:3000/upload"
                         :auto-upload="false"
                         accept="image/jpeg,image/gif,image/png"
                         list-type="picture-card"
@@ -99,7 +99,7 @@
                     </div>
                     <el-upload 
                         ref="upload"
-                        action="http://127.0.0.1/upload"
+                        action="http://127.0.0.1:3000/upload"
                         :auto-upload="false"
                         accept="image/jpeg,image/gif,image/png"
                         list-type="picture-card"
@@ -158,7 +158,7 @@ export default {
     methods: {
         // 获取文章列表
         getNews() {
-            axios.get('http://127.0.0.1/news/getallinfo').then(res => {
+            axios.get('http://127.0.0.1:3000/news/getallinfo').then(res => {
                 this.tableData = res.data;
                 // console.log(this.tableData);
             }).catch(err => {
@@ -169,6 +169,7 @@ export default {
         addNew(){
             // 上传图片后,再使用on-success钩子执行保存操作 handleAddSuccess()
             this.$refs.upload.submit()  // 上传图片
+            this.$message.info('正在提交，请稍候...')
         },
         // 关闭新增弹窗
         closeAddDialog() {
@@ -193,12 +194,17 @@ export default {
                 cancelButtonText:'取消',
                 type:'warning'
             }).then(()=>{
-                axios.get('http://127.0.0.1/news/delnew',{params:{id:row.id}}
+                axios.get('http://127.0.0.1:3000/news/delnew',{params:{id:row.id}}
                 ).then(res=>{
                     console.log(res.data);
                     if(res.data.status == 200){
                         this.$message.success('删除成功')
                         this.getNews()  // 刷新表格
+                        row.pic = row.newPic
+                        // console.log(row);
+                        axios.post('http://127.0.0.1:3000/delfiles',row).then(res=>{
+                            console.log(res.data);
+                        })
                     }else{this.$message.error('删除失败')}
                 }).catch(err=>{
                     console.log('操作失败：'+err);
@@ -220,7 +226,7 @@ export default {
         },
         // 修改文章（上传接口）
         updateNew(result){
-            axios.get('http://127.0.0.1/news/updatenew',{
+            axios.get('http://127.0.0.1:3000/news/updatenew',{
                 params:{
                     newtitle: result.newTitle,
                     newpic: result.pic,
@@ -242,7 +248,7 @@ export default {
                 }else{
                     this.$message.error('提交失败')
                     if(this.fileNum > 0){
-                        axios.post('http://127.0.0.1/delfiles', result).then(res=>{
+                        axios.post('http://127.0.0.1:3000/delfiles', result).then(res=>{
                             console.log(res.data);
                         })
                         this.fileNum = 0
@@ -253,7 +259,7 @@ export default {
                 console.log('操作失败：' + err);
                 this.$message.error('提交失败，请联系管理员')
                 if(this.fileNum > 0){
-                    axios.post('http://127.0.0.1/delfiles', result).then(res=>{
+                    axios.post('http://127.0.0.1:3000/delfiles', result).then(res=>{
                         console.log(res.data);
                     })
                     this.fileNum = 0
@@ -266,7 +272,9 @@ export default {
             // 若有图片上传，则使用on-success钩子执行保存操作 handleUpdateSuccess()
             if(this.fileNum > 0){
                 this.$refs.upload.submit()  // 上传图片
+                this.$message.info('正在提交，请稍候...')
             }else{
+                this.$message.info('正在提交，请稍候...')
                 let result = this.dialogForm;
                 result.person = localStorage.user  // 赋值登录的用户名
                 // 将状态的bool类型转为int
@@ -316,7 +324,7 @@ export default {
             else result.isDel = 0
             // console.log(result);
             // 上传接口
-            axios.get('http://127.0.0.1/news/insnew',{
+            axios.get('http://127.0.0.1:3000/news/insnew',{
                 params:{
                     id: result.id,
                     newtitle: result.newTitle,
@@ -336,7 +344,7 @@ export default {
                 }else{
                     this.$message.error('提交失败')
                     if(result.pic !== ''){
-                        axios.post('http://127.0.0.1/delfiles', this.dialogForm).then(res=>{
+                        axios.post('http://127.0.0.1:3000/delfiles', this.dialogForm).then(res=>{
                             console.log(res.data);
                         })
                     }
@@ -345,7 +353,7 @@ export default {
                 console.log('操作失败：' + err);
                 this.$message.error('提交失败，请联系管理员')
                 if(result.pic !== ''){
-                    axios.post('http://127.0.0.1/delfiles', this.dialogForm).then(res=>{
+                    axios.post('http://127.0.0.1:3000/delfiles', this.dialogForm).then(res=>{
                         console.log(res.data);
                     })
                 }

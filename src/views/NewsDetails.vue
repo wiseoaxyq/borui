@@ -1,10 +1,14 @@
 <template>
     <div class="newsdetails" v-for="item in news" :key="item.id">
-        <img :src="item.newPic" alt="">
-        <p>{{ item.newTitle }}</p>
-        <p>编稿人：{{ item.person }}</p>
-        <p>发表日期：{{ Date(item.newDate) }}</p>
-        <div>
+        <div class="title">
+            <p>{{ item.newTitle }}</p>
+            <span>{{ item.newDate }} -- </span>
+            <span>{{ item.person }}</span>
+        </div>
+        <div class="info">
+            <div class="infoPic">
+                <img :src="item.newPic" alt="" />
+            </div>
             <p v-html="item.newInfo.replace(/\n/gm, '<br>')"></p>
         </div>
     </div>
@@ -24,7 +28,7 @@ import axios from 'axios';
         },
         methods:{
             newsDataIdGet(id) {
-                axios.get('http://127.0.0.1/news/getnewid',{
+                axios.get('http://127.0.0.1:3000/news/getnewid',{
                     params:{
                         id: id
                     }
@@ -44,3 +48,31 @@ import axios from 'axios';
         }
     }
 </script>
+
+<style scoped>
+.newsdetails{
+    margin: 0 auto;
+    margin-top: 60px;
+    width: 60%;
+}
+.title{
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 90px;
+}
+.title p{
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.info{
+    line-height: 30px;
+    margin-bottom: 90px;
+}
+.infoPic img{
+    width: 100%;
+}
+.info p{
+    font-size: 17px;
+}
+</style>

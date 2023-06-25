@@ -7,7 +7,7 @@
                     <img src="../assets/img/home_top2.jpg" alt="">
                 </div>
                 <el-row justify="center">
-                    <el-col :span="12" class="aboutText">
+                    <el-col :xs="24" :sm="12" class="aboutText">
                         <el-scrollbar height="640px">
                         <h1>东莞市柏锐智能科技有限公司</h1>
                         <p>东莞市柏锐智能科技有限公司成立于2008年，是一家专注于各种粘稠度流体非标设备的研发设计、生产制造及销售的生产厂家。公司有着19年的行业经验，拥有厂房1598平米，专业团队20余人。是国内极少数具有软硬件自主研发生产的源头厂家。</p>
@@ -20,7 +20,7 @@
                         <p>5、柏锐提倡：知行合一，止行于善。</p>
                         </el-scrollbar>
                     </el-col>
-                    <el-col :span="12" class="aboutPicBox">
+                    <el-col :xs="0" :sm="12" class="aboutPicBox">
                         <div class="aboutPic">
                             <img src="../assets/img/jianjietopmin.jpg" alt="">
                         </div>
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </el-col>
-                    <el-col :span="10">
+                    <el-col :xs="24" :sm="12" :md="10">
                         <div class="aboutBox aboutAdvantageBox">
                             <img src="../assets/img/home_top.jpg" alt="image">
                             <div class="aboutAdvantageText">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     </el-col>
-                    <el-col :span="14">
+                    <el-col :xs="24" :sm="12" :md="14">
                         <div class="aboutBox aboutAdvantageBox">
                             <img src="../assets/img/advantage_2.jpg" alt="image">
                             <div class="aboutAdvantageText">
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </el-col>
-                    <el-col :span="14">
+                    <el-col :xs="24" :sm="12" :md="14">
                         <div class="aboutBox aboutAdvantageBox">
                             <img src="../assets/img/advantage_3.jpg" alt="image">
                             <div class="aboutAdvantageText">
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                     </el-col>
-                    <el-col :span="10">
+                    <el-col :xs="24" :sm="12" :md="10">
                         <div class="aboutBox aboutAdvantageBox">
                             <img src="../assets/img/advantage_4.jpg" alt="image">
                             <div class="aboutAdvantageText">
@@ -81,12 +81,12 @@
             </el-tab-pane>
             <el-tab-pane label="企业风采" name="2">
                 <el-row justify="center" class="about2">
-                    <el-col :span="16">
+                    <el-col :xs="24" :sm="24" :md="16">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="24" :md="8">
                         <div class="aboutBox about2Text">
                             <div class="about2TextTop">
                                 <h1>办公环境</h1>
@@ -97,29 +97,29 @@
                             </div>
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="8" :md="8">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="8" :md="8">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="8" :md="8">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
                     </el-col>
                 </el-row>
                 <el-row justify="center" class="about2">
-                    <el-col :span="16">
+                    <el-col :xs="24" :sm="24" :md="16">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="24" :md="8">
                         <div class="aboutBox about2Text">
                             <div class="about2TextTop">
                                 <h1>车间环境</h1>
@@ -130,29 +130,29 @@
                             </div>
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="8" :md="8">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="8" :md="8">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="8" :md="8">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
                     </el-col>
                 </el-row>
                 <el-row justify="center" class="about2">
-                    <el-col :span="16">
+                    <el-col :xs="24" :sm="24" :md="16">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="24" :md="8">
                         <div class="aboutBox about2Text">
                             <div class="about2TextTop">
                                 <h1>精英团队</h1>
@@ -163,17 +163,17 @@
                             </div>
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="8" :md="8">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="8" :md="8">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="24" :sm="8" :md="8">
                         <div class="aboutBox about2Pic">
                             <img src="../assets/img/home_top3.jpg" alt="">
                         </div>
@@ -182,82 +182,82 @@
             </el-tab-pane>
             <el-tab-pane label="荣誉资质" name="3">
                 <el-row class="about2">
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/2.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/3.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/4.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/5.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/6.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/7.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/8.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/9.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/10.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/11.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/12.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/13.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/14.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/15.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/16.jpg" alt="">
                         </div>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :xs="12" :sm="8">
                         <div class="aboutBox about3Pic">
                             <img src="../assets/img/patent/17.jpg" alt="">
                         </div>

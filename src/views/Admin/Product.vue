@@ -71,7 +71,7 @@
                 <el-form-item label="产品图片：" prop="pic">
                     <el-upload 
                         ref="upload"
-                        action="http://127.0.0.1/upload"
+                        action="http://127.0.0.1:3000/upload"
                         :auto-upload="false"
                         accept="image/jpeg,image/gif,image/png"
                         list-type="picture-card"
@@ -94,7 +94,7 @@
                 <el-form-item label="详情图：" prop="pics">
                     <el-upload 
                         ref="uploadlist"
-                        action="http://127.0.0.1/uploadlist"
+                        action="http://127.0.0.1:3000/uploadlist"
                         :auto-upload="false"
                         accept="image/jpeg,image/gif,image/png"
                         list-type="picture-card"
@@ -161,7 +161,7 @@
                     </div>
                     <el-upload 
                         ref="upload"
-                        action="http://127.0.0.1/upload"
+                        action="http://127.0.0.1:3000/upload"
                         :auto-upload="false"
                         accept="image/jpeg,image/gif,image/png"
                         list-type="picture-card"
@@ -188,7 +188,7 @@
                     </div>
                     <el-upload 
                         ref="uploadlist"
-                        action="http://127.0.0.1/uploadlist"
+                        action="http://127.0.0.1:3000/uploadlist"
                         :auto-upload="false"
                         accept="image/jpeg,image/gif,image/png"
                         list-type="picture-card"
@@ -243,7 +243,7 @@ export default{
     methods:{
         // 获取产品列表
         getProduct(){
-            axios.get('http://127.0.0.1/productList/getallinfo').then(res=>{
+            axios.get('http://127.0.0.1:3000/productList/getallinfo').then(res=>{
                 this.tableData = res.data;
                 // console.log(this.tableData);
                 // 处理json字符串
@@ -263,6 +263,7 @@ export default{
             this.$refs.uploadlist.submit()  // 上传详情图
             this.$refs.upload.submit()  // 上传图片
 
+            this.$message.info('正在提交，请稍候...')
             setTimeout(() => {
                 // 上传完成后，数据保存到数据库的操作
                 let result = this.dialogForm;
@@ -276,7 +277,7 @@ export default{
                 result.picList = JSON.stringify(result.picList)
                 console.log(result);
                 // 上传接口
-                axios.get('http://127.0.0.1/productList/insproduct',{
+                axios.get('http://127.0.0.1:3000/productList/insproduct',{
                     params:{
                         id: result.id,
                         invcode: result.invCode,
@@ -302,7 +303,7 @@ export default{
                     }else{
                         this.$message.error('提交失败')
                         // if(result.pic !== ''){
-                        //     axios.post('http://127.0.0.1/delfiles', this.dialogForm).then(res=>{
+                        //     axios.post('http://127.0.0.1:3000/delfiles', this.dialogForm).then(res=>{
                         //         console.log(res.data);
                         //     })
                         // }
@@ -311,7 +312,7 @@ export default{
                     console.log('操作失败：' + err);
                     this.$message.error('提交失败，请联系管理员')
                     // if(result.pic !== ''){
-                    //     axios.post('http://127.0.0.1/delfiles', this.dialogForm).then(res=>{
+                    //     axios.post('http://127.0.0.1:3000/delfiles', this.dialogForm).then(res=>{
                     //         console.log(res.data);
                     //     })
                     // }
@@ -358,7 +359,7 @@ export default{
         },
         // 更新产品（上传接口）
         updateProduct(result){
-            axios.get('http://127.0.0.1/productList/updateproduct',{
+            axios.get('http://127.0.0.1:3000/productList/updateproduct',{
                 params:{
                     invcode: result.invCode,
                     invname: result.invName,
@@ -410,6 +411,7 @@ export default{
             if(this.fileNum > 0){
                 this.$refs.upload.submit()  // 上传产品图
             }
+            this.$message.info('正在提交，请稍候...')
             setTimeout(() => {
                 let result = this.dialogForm
                 result.person = localStorage.user  // 赋值登录的用户名
@@ -427,12 +429,16 @@ export default{
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(()=>{
-                axios.get('http://127.0.0.1/productList/delproduct',{params:{id: row.id}}
+                axios.get('http://127.0.0.1:3000/productList/delproduct',{params:{id: row.id}}
                 ).then(res=>{
                     console.log(res.data);
                     if(res.data.status == 200){
                         this.$message.success('删除成功')
                         this.getProduct()  //刷新列表
+                        row.pic = row.invInfoPic
+                        row.pic.push(row.invPic)
+                        // console.log(row);
+                        axios.post('http://127.0.0.1:3000/delfileslist',row)
                     }else{this.$message.error('删除失败')}
                 }).catch(err=>{
                     console.log("操作失败："+err);
@@ -445,7 +451,7 @@ export default{
         },
         // 获取一级分类
         getFilterList(){
-            axios.get('http://127.0.0.1/productList/filterlist').then(res=>{
+            axios.get('http://127.0.0.1:3000/productList/filterlist').then(res=>{
                 this.filter1 = res.data;
                 // console.log(this.filter1);
             }).catch(err=>{
@@ -454,7 +460,7 @@ export default{
         },
         // 获取二级分类
         getFilterList2(val){
-            axios.get('http://127.0.0.1/productList/filterlist2',{
+            axios.get('http://127.0.0.1:3000/productList/filterlist2',{
                 params:{
                     filterfather:val
                 }

@@ -30,7 +30,7 @@
     },
     methods:{
         login(){
-            axios.post('http://127.0.0.1/login',{
+            axios.post('http://127.0.0.1:3000/login',{
               username: this.username,
               password: this.password
             }).then(response =>{
@@ -60,7 +60,7 @@
           this.$router.push({path:'/'});
         },
         getName(name){
-          axios.get('http://127.0.0.1/user/getname',{
+          axios.get('http://127.0.0.1:3000/user/getname',{
             params:{username: name}
           }).then(res=>{
             console.log(res.data[0].name);
